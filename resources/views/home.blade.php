@@ -14,7 +14,28 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="/questionnaires/create" class="btn btn-dark">Create new Questionnare</a>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">My Questionnaires</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @forelse($questionnaires as $questionnaire)
+                            <li class="list-group-item">
+                                <a href="{{ $questionnaire->path() }}">{{ $questionnaire->title }}</a>
+                                <div class="mt-2">
+                                    <small class="font-weight-bold">Share URL</small>
+                                    <p>
+                                        <a href="{{ $questionnaire->publicPath() }}">{{ $questionnaire->publicPath() }}</a>
+                                    </p>
+                                </div>
+                            </li>
+                        @empty
+                            <div class="card-body">There is no Questions in this Questionnaire</div>
+                        @endforelse
+                    </ul>
                 </div>
             </div>
         </div>
